@@ -17,4 +17,5 @@ abstract class CustomThemes {
   );
 
   static const mdPadding = EdgeInsets.all(16);
+  static const smPadding = EdgeInsets.all(8.0);
 }
