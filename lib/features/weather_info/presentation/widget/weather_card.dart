@@ -101,8 +101,12 @@ class LocationData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateFormat = DateFormat("MMMd").format(DateTime.parse(date));
-    final timeFormat = DateFormat("jm").format(DateTime.parse(date));
+    final localTime = DateTime.parse(date).toLocal();
+    final dateFormat = DateFormat("MMMd").format(localTime);
+    final timeFormat = DateFormat("jm").format(localTime);
+    print(localTime);
+    print(dateFormat);
+    print(timeFormat);
     return Column(
       children: [
         Row(
