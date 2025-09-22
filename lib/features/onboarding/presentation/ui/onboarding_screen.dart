@@ -2,7 +2,6 @@ import 'package:bmkg_weather_app_flutter/features/weather_info/presentation/scre
 import 'package:bmkg_weather_app_flutter/shared/widgets/primary_button.dart';
 import 'package:bmkg_weather_app_flutter/utils/themes/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class OnboardingScreen extends StatelessWidget {
   static const routeName = "/onboarding";
@@ -19,8 +18,8 @@ class OnboardingScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(
-                  'assets/images/logo/logo.svg',
+                Image.asset(
+                  'assets/images/logo/logo.png',
                   fit: BoxFit.fitWidth,
                 ),
                 SizedBox(height: 32),
