@@ -24,13 +24,12 @@ class OnboardingScreen extends StatelessWidget {
                   fit: BoxFit.fitWidth,
                 ),
                 SizedBox(height: 32),
-                PrimaryButton(
-                  () => Navigator.pushReplacementNamed(
+                PrimaryButton(() {
+                  Navigator.pushReplacementNamed(
                     context,
                     WeatherInfoScreen.routeName,
-                  ),
-                  "CEK CUACA",
-                ),
+                  );
+                }, "CEK CUACA"),
               ],
             ),
           ),

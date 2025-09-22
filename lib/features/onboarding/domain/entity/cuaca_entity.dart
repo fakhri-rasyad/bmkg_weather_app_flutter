@@ -5,12 +5,16 @@ class CuacaEntity extends Equatable {
   final int temp;
   final String datetime;
   final String weatherDesc;
+  final int windSpeed;
+  final int hu;
   final String image;
 
   const CuacaEntity({
     required this.temp,
     required this.datetime,
     required this.weatherDesc,
+    required this.windSpeed,
+    required this.hu,
     required this.image,
   });
 
@@ -22,6 +26,8 @@ class CuacaEntity extends Equatable {
       temp: model.temp,
       datetime: model.datetime,
       weatherDesc: model.weatherDesc,
+      windSpeed: model.windSpeed,
+      hu: model.humidity,
       image: model.image,
     );
   }
