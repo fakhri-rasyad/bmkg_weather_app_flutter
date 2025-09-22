@@ -4,7 +4,6 @@ import 'package:bmkg_weather_app_flutter/features/weather_info/presentation/widg
 import 'package:bmkg_weather_app_flutter/shared/widgets/snackbar_handler.dart';
 import 'package:bmkg_weather_app_flutter/utils/themes/themes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class WeatherInfoScreen extends StatefulWidget {
@@ -37,9 +36,6 @@ class _WeatherInfoScreenState extends State<WeatherInfoScreen> {
                 flex: 7,
                 child: BlocConsumer<InfoScreenCubit, InfoScreenState>(
                   builder: (context, state) {
-                    if (state is InfoScreenLoading) {
-                      return CircularProgressIndicator();
-                    }
                     return WeatherCard();
                   },
                   listener: (context, state) {

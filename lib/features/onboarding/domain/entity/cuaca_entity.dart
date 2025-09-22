@@ -5,7 +5,7 @@ class CuacaEntity extends Equatable {
   final int temp;
   final String datetime;
   final String weatherDesc;
-  final int windSpeed;
+  final double windSpeed;
   final int hu;
   final String image;
 

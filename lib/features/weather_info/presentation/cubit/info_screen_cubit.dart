@@ -68,7 +68,6 @@ class InfoScreenCubit extends Cubit<InfoScreenState> {
       return placemarks.first.subLocality;
     } catch (e) {
       emit(InfoScreenError("Geocoder unavailable: $e"));
-      print(e);
       return null;
     }
   }
@@ -79,11 +78,9 @@ class InfoScreenCubit extends Cubit<InfoScreenState> {
     response.fold(
       (onError) {
         emit(InfoScreenError(onError));
-        print(onError);
       },
       (onSuccess) {
         emit(InfoScreenCuacaLoaded(onSuccess, onSuccess.cuacaEntity.first));
-        print(onSuccess.cuacaEntity.first);
       },
     );
   }

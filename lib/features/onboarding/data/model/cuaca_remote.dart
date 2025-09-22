@@ -4,7 +4,7 @@ class CuacaRemote extends Equatable {
   final int temp;
   final String datetime;
   final String weatherDesc;
-  final int windSpeed;
+  final double windSpeed;
   final int humidity;
   final String image;
 
