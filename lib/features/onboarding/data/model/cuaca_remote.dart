@@ -25,7 +25,7 @@ class CuacaRemote extends Equatable {
       temp: json["t"],
       datetime: json["datetime"],
       weatherDesc: json["weather_desc"],
-      windSpeed: json["ws"],
+      windSpeed: (json["ws"] as num).toDouble(),
       humidity: json["hu"],
       image: json["image"],
     );

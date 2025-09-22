@@ -104,9 +104,6 @@ class LocationData extends StatelessWidget {
     final localTime = DateTime.parse(date).toLocal();
     final dateFormat = DateFormat("MMMd").format(localTime);
     final timeFormat = DateFormat("jm").format(localTime);
-    print(localTime);
-    print(dateFormat);
-    print(timeFormat);
     return Column(
       children: [
         Row(
