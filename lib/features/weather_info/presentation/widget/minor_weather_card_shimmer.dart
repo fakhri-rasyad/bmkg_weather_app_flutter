@@ -1,3 +1,4 @@
+import 'package:bmkg_weather_app_flutter/shared/widgets/shimmer_container.dart';
 import 'package:bmkg_weather_app_flutter/utils/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -15,24 +16,16 @@ class MinorWeatherCardShimmer extends StatelessWidget {
             baseColor: Colors.grey[400]!,
             highlightColor: Colors.grey[100]!,
             child: Row(
+              spacing: 8.0,
               children: [
-                Container(height: 24, width: 24, color: Colors.white),
-                Padding(padding: CustomThemes.smPadding),
+                ShimmerContainer(height: 24, width: 24),
                 Expanded(
                   child: Column(
                     spacing: 8.0,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 16,
-                        width: double.infinity,
-                        color: Colors.white,
-                      ),
-                      Container(
-                        height: 8,
-                        width: double.infinity,
-                        color: Colors.white,
-                      ),
+                      ShimmerContainer(height: 16, width: double.infinity),
+                      ShimmerContainer(height: 8, width: double.infinity),
                     ],
                   ),
                 ),

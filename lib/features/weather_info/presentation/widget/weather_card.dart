@@ -1,4 +1,5 @@
 import 'package:bmkg_weather_app_flutter/features/weather_info/presentation/cubit/info_screen_cubit.dart';
+import 'package:bmkg_weather_app_flutter/features/weather_info/presentation/widget/weather_card_shimmer.dart';
 import 'package:bmkg_weather_app_flutter/features/weather_info/presentation/widget/weather_minor_data_row.dart';
 import 'package:bmkg_weather_app_flutter/utils/themes/themes.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class WeatherCard extends StatelessWidget {
         child: BlocBuilder<InfoScreenCubit, InfoScreenState>(
           builder: (context, state) {
             if (state is InfoScreenLoading) {
-              return Center(child: CircularProgressIndicator());
+              return WeatherCardShimmer();
             }
             if (state is InfoScreenCuacaLoaded) {
               final location = state.response.lokasiEntity;
