@@ -17,9 +17,6 @@ class WeatherCard extends StatelessWidget {
         padding: CustomThemes.mdPadding,
         child: BlocBuilder<InfoScreenCubit, InfoScreenState>(
           builder: (context, state) {
-            if (state is InfoScreenLoading) {
-              return WeatherCardShimmer();
-            }
             if (state is InfoScreenCuacaLoaded) {
               final location = state.response.lokasiEntity;
               final selectedCuaca = state.cuacaData;
@@ -58,17 +55,7 @@ class WeatherCard extends StatelessWidget {
                 ],
               );
             }
-            return Column(
-              spacing: 8,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset("assets/images/logo/logo.png"),
-                Text(
-                  "Cek Cuaca Lokasi",
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-              ],
-            );
+            return WeatherCardShimmer();
           },
         ),
       ),

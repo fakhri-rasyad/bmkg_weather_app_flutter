@@ -4,6 +4,7 @@ import 'package:bmkg_weather_app_flutter/features/onboarding/data/source/remote_
 import 'package:bmkg_weather_app_flutter/features/onboarding/domain/entity/response_entity.dart';
 import 'package:bmkg_weather_app_flutter/features/onboarding/domain/repository/weather_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 
 class WeatherRepositoryImpl implements WeatherRepository {
   LocalDataSource localDataSource;
@@ -38,8 +39,11 @@ class WeatherRepositoryImpl implements WeatherRepository {
         (onError) {
           return left(onError);
         },
-        (onSuccess) {
-          final responseEntity = ResponseEntity.fromModel(onSuccess);
+        (onSuccess) async {
+          final responseEntity = await compute(
+            (model) => ResponseEntity.fromModel(model),
+            onSuccess,
+          );
           return right(responseEntity);
         },
       );
