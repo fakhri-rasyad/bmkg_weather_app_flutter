@@ -15,15 +15,21 @@ class WeatherRepositoryImpl implements WeatherRepository {
   @override
   Future<Either<String, String>> getWilayahCode(String sublocationName) async {
     try {
-      final Wilayah? code = await localDataSource.getWilayahCode(
+      final List<Wilayah?> code = await localDataSource.getWilayahCode(
         sublocationName,
       );
 
-      if (code == null) {
+      if (code.first == null) {
         return left("Wilayah tidak terdaftar");
       }
 
-      return right(code.kode);
+      final correctOne = code.firstWhere((e) => e!.nama == sublocationName);
+
+      if (correctOne == null) {
+        return left("Wilayah tidak terdaftar");
+      }
+
+      return right(correctOne.kode);
     } catch (e) {
       return left(e.toString());
     }

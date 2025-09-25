@@ -1,30 +1,33 @@
 import 'package:bmkg_weather_app_flutter/core/data_source/local/database_service.dart';
 import 'package:bmkg_weather_app_flutter/features/onboarding/data/model/wilayah.dart';
 
-abstract class LocalDataSource {
+abstract class SearchLocalSource {
   Future<List<Wilayah>> getWilayahCode(String sublocationName);
 }
 
-class LocalDataSourceImplementation implements LocalDataSource {
+class SearchLocalSourceImplementation implements SearchLocalSource {
   DatabaseService service;
 
-  LocalDataSourceImplementation(this.service);
+  SearchLocalSourceImplementation(this.service);
 
   @override
   Future<List<Wilayah>> getWilayahCode(String sublocationName) async {
     final database = service.database;
 
-    List<Map> maps = await database.query(
+    final maps = await database.query(
       "wilayah",
       columns: ["kode", "nama"],
-      where: 'nama LIKE ?',
-      whereArgs: [sublocationName],
+      where:
+          "(LENGTH(kode) - LENGTH(REPLACE(kode, '.', ''))) >= 3 AND nama LIKE ?",
+      whereArgs: ['%$sublocationName%'],
+      orderBy: "nama ASC",
     );
 
     if (maps.isNotEmpty) {
       return maps.map((e) => Wilayah.fromMap(e)).toList();
-      // Wilayah.fromMap(maps.first);
     }
+
+    print(maps);
 
     return [];
   }

@@ -15,7 +15,7 @@ abstract class CustomTextTheme {
 
   static const titleLargeBold = TextStyle(
     fontSize: 22,
-    color: CustomColors.white,
+    color: CustomColors.royalBlue,
     fontWeight: FontWeight.bold,
   );
 

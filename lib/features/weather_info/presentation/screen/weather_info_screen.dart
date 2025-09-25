@@ -1,6 +1,10 @@
+import 'package:bmkg_weather_app_flutter/depedency_injection.dart';
+import 'package:bmkg_weather_app_flutter/features/search_screen/presentation/cubit/search_delegate_cubit.dart';
+import 'package:bmkg_weather_app_flutter/features/search_screen/presentation/widget/search_delegate.dart';
 import 'package:bmkg_weather_app_flutter/features/weather_info/presentation/cubit/info_screen_cubit.dart';
 import 'package:bmkg_weather_app_flutter/features/weather_info/presentation/widget/minort_weather_card_row.dart';
 import 'package:bmkg_weather_app_flutter/features/weather_info/presentation/widget/weather_card.dart';
+import 'package:bmkg_weather_app_flutter/shared/widgets/primary_button.dart';
 import 'package:bmkg_weather_app_flutter/utils/themes/themes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +45,13 @@ class _WeatherInfoScreenState extends State<WeatherInfoScreen> {
               ),
               Flexible(flex: 1, child: SizedBox(height: 8)),
               MinortWeatherCardRow(),
+              PrimaryButton(
+                () => showSearch(
+                  context: context,
+                  delegate: BMKGSearchDelegate(sl<SearchDelegateCubit>()),
+                ),
+                "Search Delegate",
+              ),
             ],
           ),
         ),

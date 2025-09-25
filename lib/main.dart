@@ -1,5 +1,6 @@
 import 'package:bmkg_weather_app_flutter/depedency_injection.dart';
 import 'package:bmkg_weather_app_flutter/features/onboarding/presentation/ui/onboarding_screen.dart';
+import 'package:bmkg_weather_app_flutter/features/search_screen/presentation/cubit/search_delegate_cubit.dart';
 import 'package:bmkg_weather_app_flutter/features/weather_info/presentation/cubit/info_screen_cubit.dart';
 import 'package:bmkg_weather_app_flutter/features/weather_info/presentation/screen/weather_info_screen.dart';
 import 'package:bmkg_weather_app_flutter/utils/colors/colors.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<InfoScreenCubit>(
           create: (context) => sl<InfoScreenCubit>(),
+        ),
+        BlocProvider<SearchDelegateCubit>(
+          create: (context) => sl<SearchDelegateCubit>(),
         ),
       ],
       child: MaterialApp(
