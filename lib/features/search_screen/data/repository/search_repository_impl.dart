@@ -18,10 +18,6 @@ class SearchRepositoryImpl extends SearchRepository {
         wilayahName,
       );
 
-      if (code.isEmpty) {
-        return left("Wilayah tidak terdaftar");
-      }
-
       final wilayahList = code.map((e) => WilayahEntity.fromModel(e)).toList();
 
       return right(wilayahList);

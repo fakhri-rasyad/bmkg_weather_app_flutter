@@ -20,3 +20,5 @@ final class SearchDelegateError extends SearchDelegateState {
 
   const SearchDelegateError(this.message);
 }
+
+final class SearchDelegateLoading extends SearchDelegateState {}

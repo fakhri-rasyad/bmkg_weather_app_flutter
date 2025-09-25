@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bmkg_weather_app_flutter/features/search_screen/presentation/cubit/search_delegate_cubit.dart';
 import 'package:bmkg_weather_app_flutter/shared/widgets/snackbar_handler.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BMKGSearchDelegate extends SearchDelegate {
   final SearchDelegateCubit cubit;
+
+  Timer? _debounce;
 
   BMKGSearchDelegate(this.cubit);
   @override
@@ -29,7 +33,19 @@ class BMKGSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    cubit.searchLocation(query);
+    return buildSuggestions(context);
+  }
+
+  void _onQueryChanged(String query) {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 400), () {
+      cubit.searchLocation(query);
+    });
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    _onQueryChanged(query);
     return BlocBuilder<SearchDelegateCubit, SearchDelegateState>(
       builder: (context, state) {
         if (state is SearchDelegateSuccess) {
@@ -50,14 +66,13 @@ class BMKGSearchDelegate extends SearchDelegate {
               },
             );
           }
+        } else if (state is SearchDelegateLoading) {
+          return SizedBox();
+        } else if (state is SearchDelegateInitial) {
+          return ListTile(title: Text("Cari lokasi anda disini"));
         }
-        return ListTile(title: Text("Cari Lokasi Anda disini"));
+        return ListTile(title: Text("Cari lokasi anda disini"));
       },
     );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return buildResults(context);
   }
 }

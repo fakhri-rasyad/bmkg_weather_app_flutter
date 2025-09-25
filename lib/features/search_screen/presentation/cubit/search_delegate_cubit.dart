@@ -12,6 +12,11 @@ class SearchDelegateCubit extends Cubit<SearchDelegateState> {
   SearchLocationUsecase searchLocationUsecase;
 
   void searchLocation(String query) async {
+    emit(SearchDelegateLoading());
+    if (query.isEmpty) {
+      emit(SearchDelegateInitial());
+      return;
+    }
     try {
       final search = await searchLocationUsecase.call(query);
       search.fold(
@@ -19,7 +24,6 @@ class SearchDelegateCubit extends Cubit<SearchDelegateState> {
           emit(SearchDelegateError(onError));
         },
         (onSuccess) {
-          print(onSuccess);
           emit(SearchDelegateSuccess(onSuccess));
         },
       );
